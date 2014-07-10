@@ -191,7 +191,9 @@ public interface CloudControllerClient {
 	
 	void createUser(String email,String password);
 
-	void deleteSpace(String spacesGuid);
+    void deleteSpace(String spacesGuid);
+    
+    void deleteOrganization(String organizationsGuid);
 
 	Object downloadApplication(String appName);
 

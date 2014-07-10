@@ -251,6 +251,10 @@ public class CloudFoundryClient implements CloudFoundryOperations {
         cc.deleteSpace(spacesGuid);
     }
 
+    public void deleteOrganization(String organizationsGuid) {
+        cc.deleteOrganization(organizationsGuid);
+    }
+
     public void deleteAllApplications() {
         cc.deleteAllApplications();
     }

@@ -1726,6 +1726,10 @@ public class CloudControllerClientImpl implements CloudControllerClient {
 		getRestTemplate().delete(getUrl("/v2/spaces/{guid}?recursive=true"), spacesGuid);
 	}
 
+    public void deleteOrganization(String organizationsGuid) {
+        getRestTemplate().delete(getUrl("/v2/organizations/{guid}?recursive=true"), organizationsGuid);
+    }
+
 	public Map<String, String> getLogs(String appName, int instancesId) {
 		String urlPath = getFileUrlPath();
 		String instance =instancesId+"";
