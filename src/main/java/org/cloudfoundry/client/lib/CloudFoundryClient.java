@@ -446,6 +446,11 @@ public class CloudFoundryClient implements CloudFoundryOperations {
         cc.deleteApplication(appName);
     }
 
+    @Override
+    public List<CloudRoute> deleteOrphanedRoutes() {
+        return cc.deleteOrphanedRoutes();
+    }
+
     public static void main(String[] args) throws Exception {
         DefaultOAuth2AccessToken auth = new DefaultOAuth2AccessToken(
                 "eyJhbGciOiJSUzI1NiJ9.eyJqdGkiOiI4ZjI1MmRlZC1jMDQwLTQ1YmUtYmQ1My0yMjYxYzRiOGVkMWQiLCJzdWIiOiI4YTUxNTk1Ni1lYmFhLTQwODctYjVjMS00YmIyNDEwYWI3OWYiLCJzY29wZSI6WyJjbG91ZF9jb250cm9sbGVyLnJlYWQiLCJjbG91ZF9jb250cm9sbGVyLndyaXRlIiwib3BlbmlkIiwicGFzc3dvcmQud3JpdGUiXSwiY2xpZW50X2lkIjoiY2YiLCJjaWQiOiJjZiIsImdyYW50X3R5cGUiOiJwYXNzd29yZCIsInVzZXJfaWQiOiI4YTUxNTk1Ni1lYmFhLTQwODctYjVjMS00YmIyNDEwYWI3OWYiLCJ1c2VyX25hbWUiOiIxcWEyd3MiLCJlbWFpbCI6IjFxYTJ3cyIsImlhdCI6MTM5MjcwMzQwOSwiZXhwIjoxMzkyNzc1NDA5LCJpc3MiOiJodHRwczovL3VhYS5lbnBhYXMuY29tL29hdXRoL3Rva2VuIiwiYXVkIjpbIm9wZW5pZCIsImNsb3VkX2NvbnRyb2xsZXIiLCJwYXNzd29yZCJdfQ.bbFnFM8BlUvJG_fqwzaqBN6A8aOTD7y0BEWI9EIxx8-5Y-GN0yWgUaW2RVeMqrMYoKteQXVqHgDBIPM_Wxaw9esWIWnGytebyLqs_m4dbQIL2VhPGb9WBpL5U8NqXUw9ExHt3Yzlin-y7zr66WyRNe-3gcWy5iscckh6OIRUV3k");

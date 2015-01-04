@@ -574,4 +574,10 @@ public interface CloudFoundryOperations {
 	 * @param callBack the callback to be un-registered
 	 */
 	void unRegisterRestLogListener(RestLogCallback callBack);
+	
+    /**
+     * Delete routes that do not have any application which is assigned to them.
+     */
+    List<CloudRoute> deleteOrphanedRoutes();
+
 }

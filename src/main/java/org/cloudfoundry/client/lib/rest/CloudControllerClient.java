@@ -121,6 +121,8 @@ public interface CloudControllerClient {
 	void deleteApplication(String appName);
 
 	void deleteAllApplications();
+	
+    List<CloudRoute> deleteOrphanedRoutes();
 
 	void updateApplicationMemory(String appName, int memory);
 

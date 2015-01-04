@@ -1746,5 +1746,41 @@ public class CloudControllerClientImpl implements CloudControllerClient {
 	public void deleteUser(String userGuid) {
 		getRestTemplate().delete(getUrl("/v2/users/{guid}"),userGuid);
 	}
-	
+
+    /**
+     * Delete routes that do not have any application which is assigned to them.
+     *
+     * @return deleted routes or an empty list if no routes have been found
+     */
+    @Override
+    public List<CloudRoute> deleteOrphanedRoutes() {
+        List<CloudRoute> orphanRoutes = new ArrayList<CloudRoute>();
+        for (CloudDomain cloudDomain : getDomainsForOrg()) {
+            orphanRoutes.addAll(fetchOrphanRoutes(cloudDomain.getName()));
+        }
+
+        List<CloudRoute> deletedCloudRoutes = new ArrayList<CloudRoute>();
+        for (CloudRoute orphanRoute : orphanRoutes) {
+            deleteRoute(orphanRoute.getHost(), orphanRoute.getDomain().getName());
+            deletedCloudRoutes.add(orphanRoute);
+        }
+
+        return deletedCloudRoutes;
+    }
+
+    private List<CloudRoute> fetchOrphanRoutes(String domainName) {
+        List<CloudRoute> orphanRoutes = new ArrayList<CloudRoute>();
+        for (CloudRoute cloudRoute : getRoutes(domainName)) {
+            if (isOrphanRoute(cloudRoute)) {
+                orphanRoutes.add(cloudRoute);
+            }
+        }
+
+        return orphanRoutes;
+    }
+
+    private boolean isOrphanRoute(CloudRoute cloudRoute) {
+        return cloudRoute.getAppsUsingRoute() == 0;
+    }
+
 }
